@@ -1,5 +1,11 @@
 # 🧩 2048verse
 
+
+
+https://github.com/user-attachments/assets/6706b8aa-6863-4b7a-8d36-81b584a355a7
+
+
+
 A modern, React-powered version of the classic **2048** game — built with clean UI, responsive design, and smooth tile animations.
 
 🎮 **Live Demo:** [https://2048verse.netlify.app](https://2048verse.netlify.app)
