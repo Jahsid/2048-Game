@@ -1,4 +1,8 @@
 # 🧩 2048verse
+A modern, React-powered version of the classic **2048** game — built with clean UI, responsive design, and smooth tile animations.
+
+🎮 **Live Demo:** [https://2048verse.netlify.app](https://2048verse.netlify.app)
+
 
 
 
@@ -6,10 +10,22 @@ https://github.com/user-attachments/assets/6706b8aa-6863-4b7a-8d36-81b584a355a7
 
 
 
-A modern, React-powered version of the classic **2048** game — built with clean UI, responsive design, and smooth tile animations.
 
-🎮 **Live Demo:** [https://2048verse.netlify.app](https://2048verse.netlify.app)
+---
+## 🎮 How to Play
 
+1. **Objective:** Combine tiles with the same number to create the **2048 tile**.  
+2. **Controls:**  
+   - Use the **Arrow Keys** on your keyboard to move tiles **up, down, left, or right**.  
+3. **Tile Mechanics:**  
+   - When two tiles with the same number collide, they **merge into one tile** with their sum.  
+   - After each move, a new tile (2 or 4) appears at a random empty spot.  
+4. **Scoring:**  
+   - Each merged tile adds its value to your score.  
+   - The score updates dynamically at the top-right of the board.  
+5. **Game End:**  
+   - **Win:** When you create the **2048 tile**.  
+   - **Game Over:** When no moves are possible (no empty cells and no adjacent tiles can merge).  
 ---
 
 ## 🚀 Tech Stack
