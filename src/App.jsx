@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { checkGameOver, checkWin, generateInitialGrid, moveGrid } from "./utils/gameLogic";
 import Board from "./components/Board";
 import { useKeyboard } from "./hooks/useKeyboard";
+import { useSwipe } from "./hooks/useSwipe";
 import GameOverlay from "./components/GameOverlay";
 import Title from "./components/Title";
 
@@ -38,6 +39,17 @@ function App() {
   );
 
   useKeyboard(handleKey);
+    useSwipe((direction) => {
+    if (win || gameOver) return;
+
+    setGrid((prevGrid) => {
+      const { newGrid, score: gainedScore } = moveGrid(prevGrid, direction);
+      setScore((prev) => prev + gainedScore);
+      if (checkWin(newGrid)) setWin(true);
+      if (checkGameOver(newGrid)) setGameOver(true);
+      return newGrid;
+    });
+  });
 
   const restartGame = () => {
     setGrid(generateInitialGrid());
