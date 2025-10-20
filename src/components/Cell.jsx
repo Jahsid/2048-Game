@@ -17,7 +17,7 @@ const CELL_COLORS = {
 
 const getCellColor = (value) => CELL_COLORS[value] || "bg-stone-800 text-white";
 
-const Cell = ({ value, size = "w-20 h-20" }) => {
+const Cell = ({ value, size = "w-15 h-15" }) => {
   return (
     <div
       className={`flex items-center justify-center rounded-lg font-bold text-2xl ${size} ${getCellColor(

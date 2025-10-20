@@ -8,34 +8,39 @@ export const useSwipe = (onSwipe) => {
     let touchEndY = 0;
 
     const handleTouchStart = (e) => {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
+      const touch = e.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
     };
 
-    const handleTouchEnd = (e) => {
-      touchEndX = e.changedTouches[0].clientX;
-      touchEndY = e.changedTouches[0].clientY;
+    const handleTouchMove = (e) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      touchEndX = touch.clientX;
+      touchEndY = touch.clientY;
+    };
 
-      const diffX = touchEndX - touchStartX;
-      const diffY = touchEndY - touchStartY;
+    const handleTouchEnd = () => {
+      const dx = touchEndX - touchStartX;
+      const dy = touchEndY - touchStartY;
 
-      if (Math.abs(diffX) > Math.abs(diffY)) {
-        // Horizontal swipe
-        if (diffX > 50) onSwipe("right");
-        else if (diffX < -50) onSwipe("left");
+      if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx > 50) onSwipe("right");
+        else if (dx < -50) onSwipe("left");
       } else {
-        // Vertical swipe
-        if (diffY > 50) onSwipe("down");
-        else if (diffY < -50) onSwipe("up");
+        if (dy > 50) onSwipe("down");
+        else if (dy < -50) onSwipe("up");
       }
     };
 
-    window.addEventListener("touchstart", handleTouchStart);
-    window.addEventListener("touchend", handleTouchEnd);
+    document.addEventListener("touchstart", handleTouchStart, { passive: false });
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+    document.addEventListener("touchend", handleTouchEnd, { passive: false });
 
     return () => {
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleTouchEnd);
     };
   }, [onSwipe]);
 };
